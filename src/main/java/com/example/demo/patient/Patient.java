@@ -1,5 +1,6 @@
 package com.example.demo.patient;
 
+import com.example.demo.doctor.Doctor;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -24,6 +25,9 @@ public class Patient {
     private LocalDate dob;
     @Transient
     private Integer age;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="doctor_id")
+    private Doctor doctor;
 
     public Patient() {
     }

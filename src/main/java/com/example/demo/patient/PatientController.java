@@ -21,14 +21,28 @@ public class PatientController {
         return patientService.getPatients();
     }
 
+    @GetMapping("{patientId}")
+    public Patient getPatient(
+            @PathVariable("patientId") Long patientId) {
+        return patientService.getPatient(patientId);
+    }
+
     @PostMapping
     public void registerNewPatient(@RequestBody Patient patient) {
         patientService.addNewPatient(patient);
     }
 
-    @DeleteMapping("api/v1/patient/patientId")
+    @DeleteMapping("{patientId}")
     public void deletePatient(
             @PathVariable("patientId") Long patientId) {
         patientService.deletePatient(patientId);
+    }
+
+    @PutMapping("{patientId}")
+    public void updateStudent(
+            @PathVariable("patientId") Long patientId,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String email) {
+        patientService.updatePatient(patientId, name, email);
     }
 }
